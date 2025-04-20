@@ -62,6 +62,14 @@ This submission is a **pixel-perfect recreation** of the homepage of **The New Y
 
 ---
 
+## 🔐 Verification
+ 
+- I used only allowed editors (VS Code) with inline JS/CSS  
+- I am 18+ years old and eligible as per the official rules  
+- Complies with all hackathon rules (1 file, hosted live, enhancements added)
+
+---
+
 ## 📁 Folder Structure
 
 ```plaintext
@@ -69,8 +77,5 @@ index.html         <-- Everything is here (HTML, CSS, JS)
 images/            <-- All assets used (mock images)
 README.md          <-- You're reading it!
 
-## 🔐 Verification
- 
-- I used only allowed editors (VS Code) with inline JS/CSS  
-- I am 18+ years old and eligible as per the official rules  
-- Complies with all hackathon rules (1 file, hosted live, enhancements added)
+
+
