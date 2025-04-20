@@ -11,7 +11,7 @@
 
 > Since NYTimes updates daily, here’s a screen recording of the homepage I cloned for pixel accuracy:
 
-🔗 [Click here to view original NYTimes homepage video that I cloned](https://drive.google.com/file/d/1YDG2UPTEEdvyOSc5cE1tzpglWdyk_Dyg/view?usp=sharing)
+🔗 [Click here to view original NYTimes homepage video that I cloned](https://drive.google.com/file/d/1j-w2rnTFSX7ADJ7T_886oTC6gpV0u3y_/view?usp=sharing)
 
 ---
 
