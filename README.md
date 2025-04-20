@@ -1,5 +1,19 @@
 # 📰 Pixel Plus Hackathon 2025 — NYTimes Clone + Enhancements
 
+---
+
+## ⚠️ Disclaimer  
+📌 **Important Note Regarding Repo Visibility & Clones**
+
+This GitHub repository was created and made public on **April 20th, 2025 at 2:00 PM IST** to host my submission for the **Pixel Plus Hackathon 2025**. Shortly after uploading, I noticed unexpected clone activity (**25+ unique clones within hours**), which concerned me.
+
+As soon as I realized the exposure risk, I made the repository **private immediately** to preserve the originality and integrity of my work.
+
+🔐 **This project is 100% original and built entirely by me from scratch.** All enhancements and replication efforts were done manually with attention to detail, without copying or reusing others’ code.
+
+---
+
+
 > 🚀 Submission by Utkarsh | Pixel Plus Hackathon  
 > 🔗 Hosted Version: [Click here to view live site](https://the-new-york-times-clone.vercel.app/)  
 > 🔗 GitHub Repo: [https://github.com/Utkarsh-Karambhe/The_New_York_Times_Clone](https://github.com/Utkarsh-Karambhe/The_New_York_Times_Clone)  
