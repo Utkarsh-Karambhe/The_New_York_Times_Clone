@@ -2,6 +2,7 @@
 
 > 🚀 Submission by Utkarsh | Pixel Plus Hackathon  
 > 🔗 Hosted Version: [Click here to view live site](https://your-live-site.vercel.app)  
+> 🔗 GitHub Repo: [https://github.com/yourusername/nyt-clone](https://github.com/yourusername/nyt-clone)  
 > 🧠 Inspired by: The New York Times (https://www.nytimes.com)
 
 ---
@@ -27,29 +28,37 @@ This submission is a **pixel-perfect recreation** of the homepage of **The New Y
 > These go *beyond replication* and demonstrate creativity + added complexity:
 
 ### 1️⃣ Dark Mode Toggle  
-- Custom-built light/dark mode switch with persistent state (via `localStorage`)
-- Smooth transitions & color scheme remap
-- Accessible: uses ARIA for screen readers
+- Custom-built light/dark mode switch with persistent state (via `localStorage`)  
+- Smooth transitions & color scheme remap  
+- Matches NYT branding in both themes  
 
 ### 2️⃣ Live Stock Ticker  
-- Automatically rotates real-time mock S&P/Nasdaq/Dow updates
-- Animated transitions with pause-on-hover
-- Eye-catching and realistic financial dashboard feel
+- Automatically rotates real-time mock S&P/Nasdaq/Dow updates  
+- Animated transitions with pause-on-hover  
+- Eye-catching and realistic financial dashboard feel  
 
 ### 3️⃣ Article Carousel Component  
-- Built with vanilla JS
-- Custom logic to rotate between multiple featured articles
-- Fully responsive + accessible
+- Built with vanilla JS  
+- Rotates through featured articles with nav controls  
+- Fully responsive + clean UX  
+
+### 4️⃣ Meta Tags (SEO + Social Sharing)  
+- Includes full set of `<meta>` tags in `<head>`  
+  - SEO title + description  
+  - Open Graph for rich previews (LinkedIn, FB)  
+  - Twitter Card previews  
+  - Favicon support  
+- Makes site shareable + professional in appearance
 
 ---
 
 ## 🧪 Tech Stack
 
-- **HTML** — semantic, clean, and organized
-- **Inline CSS** — handcrafted for precision
-- **Vanilla JavaScript** — no frameworks, pure logic
-- **No back-end / API calls** — mock-only, as per rules
-- **Hosting**: [Vercel](https://vercel.com) / GitHub Pages
+- **HTML** — semantic, clean, and organized  
+- **Inline CSS** — handcrafted for visual fidelity  
+- **Vanilla JavaScript** — no frameworks, pure logic  
+- **No back-end / API calls** — mock-only  
+- **Hosting**: [Vercel](https://vercel.com) or GitHub Pages  
 
 ---
 
