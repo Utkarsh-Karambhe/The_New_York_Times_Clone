@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New York Times - Breaking News, US News, World News and Videos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'nyt-cheltenham', georgia, 'times new roman', times, serif;
+}
+
+body {
+    color: #121212;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Typography */
+.headline {
+    font-family: 'nyt-cheltenham', georgia, serif;
+    font-weight: 700;
+}
+
+.summary {
+    font-family: 'nyt-imperial', georgia, serif;
+}
+
+.byline, .timestamp {
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+/* Header Styles */
+.site-header {
+    position: static;
+    top: 0;
+    background: white;
+    z-index: 1000;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
+    height: 42px;
+}
+
+/* Search icon */
+.search-container {
+    position: absolute;
+    left: 0;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.search-icon {
+    fill: #333;
+    width: 16px;
+    height: 16px;
+}
+
+/* Left section with date and paper */
+.left-section {
+    display: flex;
+    position: absolute;
+    left: 40px;
+    font-size: 13px;
+    color: #666;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+.date {
+    margin-right: 12px;
+}
+
+.todays-paper {
+    margin-left: 12px;
+}
+
+/* Logo styling */
+.logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nyt-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #000;
+}
+
+
+/* Right section with S&P and user tools */
+.right-section {
+    display: flex;
+    position: absolute;
+    right: 0;
+    align-items: center;
+}
+
+/* S&P info */
+.stock-info {
+    font-size: 13px;
+    color: #333;
+    margin-right: 20px;
+}
+
+.stock-change {
+    color: #d0021b; /* Red for negative change */
+}
+
+/* User tools */
+.user-tools {
+    display: flex;
+    align-items: center;
+}
+
+.subscribe-button {
+    background: #567b95;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'nyt-franklin', arial, sans-serif;
+    margin-right: 10px;
+    letter-spacing: 0.5px;
+}
+
+.login-button {
+    font-size: 12px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+    color: #333;
+    border: 1px solid #e2e2e2;
+    padding: 7px 12px;
+    border-radius: 3px;
+}
+
+/* Region selector */
+.region-selector {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.region-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.region-list li {
+    margin: 0 10px;
+}
+
+.region-list a {
+    color: #333;
+    font-size: 12px;
+    text-decoration: none;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+.region-list a.active {
+    font-weight: bold;
+}
+
+/* Navigation */
+.main-navigation {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #fffdfd;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 36px; /* Spacing between items */
+}
+
+.nav-item {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: 'nyt-franklin', arial, sans-serif;
+    position: relative;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    vertical-align: middle;
+    margin-left: 2px;
+    color: #666;
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+/* Main Content Styles */
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.main-content {
+    flex: 2;
+}
+
+.sidebar {
+    flex: 1;
+    border-left: 1px solid #e2e2e2;
+    padding-left: 20px;
+}
+
+/* Lead Story */
+.lead-story {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.live-badge {
+    background: #d0021b;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 5px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+    display: inline-block;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #666;
+    display: inline-block;
+}
+
+.lead-headline {
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 10px 0;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.lead-summary {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.see-more {
+    color: #326891;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+/* Analysis Block */
+.analysis-block {
+    margin-top: 10px;
+    border-left: 3px solid #567b95;
+    padding-left: 10px;
+    margin: 25px 0;
+}
+
+.analysis-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #567b95;
+    margin-top: 10px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+    font-weight: bold;
+    
+}
+
+/* Story Cards */
+.story-card {
+    margin-bottom: 25px;
+}
+
+.story-headline {
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.story-timestamp {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+.story-summary {
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 30px 0 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+/* Grid Layouts */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* News Cards */
+.news-card {
+    margin-bottom: 25px;
+}
+
+.news-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.news-headline {
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+/* Sidebar Styles */
+.sidebar-title {
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+.opinion-card {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.opinion-headline {
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.opinion-author {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+/* Footer Styles */
+.site-footer {
+    background: #ffffff;
+    padding: 40px 0;
+    border-top: 1px solid #e2e2e2;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+
+.footer-column-title {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+.footer-link {
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.footer-small-link {
+    font-size: 11px;
+    color: #666;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    font-family: 'nyt-franklin', arial, sans-serif;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .stock-info {
+        display: none; /* Hide on smaller screens */
+    }
+}
+
+@media (max-width: 1024px) {
+    .logo-container {
+        position: static;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+    
+    .left-section {
+        position: static;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    
+    .top-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+    }
+    
+    .right-section {
+        position: static;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid #e2e2e2;
+        padding-top: 30px;
+    }
+    
+    .grid-3, .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+    }
+    
+    .search-container {
+        position: absolute;
+        right: 15px;
+        left: auto;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .region-selector {
+        overflow-x: auto;
+    }
+    
+    .region-list {
+        min-width: 500px;
+        justify-content: flex-start;
+        padding: 0 15px;
+    }
+    
+    .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nav-list {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-item {
+        white-space: nowrap;
+    }
+    
+    
+}
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <!-- First Row (Top Bar) -->
+            <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
+                <!-- Left: Search Icon -->
+                <div class="search-container" style="flex: 0 0 auto;">
+                    <button class="search-button" style="background: none; border: none; cursor: pointer;">
+                        <svg class="search-icon" width="24" height="24" viewBox="0 0 16 16" style="fill: #333;">
+                            <path d="M11.3,9.3c0.7-1,1.1-2.2,1.1-3.5c0-3.3-2.7-6-6-6S0.5,2.5,0.5,5.8s2.7,6,6,6c1.3,0,2.5-0.4,3.5-1.1l4.1,4.1l1.4-1.4L11.3,9.3z M6.5,9.8c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S8.7,9.8,6.5,9.8z"></path>
+                        </svg>
+                    </button>
+                </div>
+               <!-- Dark Mode Toggle Switch -->
+<div style="display: inline-flex; align-items: center; margin-left: 26px;">
+    <span id="mode-label" style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666; margin-right: 8px;">Light Mode</span>
+    <label style="position: relative; display: inline-block; width: 42px; height: 22px;">
+      <input type="checkbox" 
+             onclick="(function(){
+               const body = document.body;
+               const dark = body.classList.toggle('dark-mode');
+               localStorage.setItem('nyt-theme', dark ? 'dark' : 'light');
+               this.setAttribute('aria-checked', dark);
+               document.getElementById('mode-label').textContent = dark ? 'Dark Mode' : 'Light Mode';
+             })()"
+             style="opacity: 0; width: 0; height: 0;"
+             aria-label="Toggle dark mode"
+             aria-checked="false">
+      <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; 
+                  background-color: #e2e2e2; transition: .3s; border-radius: 34px;">
+        <span style="position: absolute; height: 18px; width: 18px; left: 2px; bottom: 2px;
+                    background-color: white; transition: .3s; border-radius: 50%;"></span>
+      </span>
+    </label>
+</div>
+
+<script>
+    // Initialize dark mode from localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkModeToggle = document.querySelector('[aria-label="Toggle dark mode"]');
+        const modeLabel = document.getElementById('mode-label');
+        
+        if (localStorage.getItem('nyt-theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.setAttribute('aria-checked', 'true');
+            modeLabel.textContent = 'Dark Mode';
+        }
+    });
+</script>
+
+<style>
+    /* Dark Mode Styles */
+    .dark-mode {
+        background-color: #121212 !important;
+        color: #e0e0e0 !important;
+    }
+    
+    .dark-mode a {
+        color: #7eb6ff !important;
+    }
+    
+    .dark-mode .site-header,
+    .dark-mode .main-navigation,
+    .dark-mode .site-footer {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+    
+    /* Switch Styling */
+    label input:checked + span {
+        background-color: #567b95 !important;
+    }
+    
+    label input:focus + span {
+        box-shadow: 0 0 1px #567b95;
+    }
+    
+    label input:checked + span span {
+        transform: translateX(20px);
+    }
+    
+    /* NYT Color Adjustments */
+    .dark-mode .story-timestamp,
+    .dark-mode .byline,
+    .dark-mode .summary {
+        color: #aaa !important;
+    }
+    
+    .dark-mode .section-title {
+        border-bottom-color: #333 !important;
+    }
+</style>
+                
+                <!-- Center: Region Selector -->
+                <div class="region-selector" style="flex: 1; text-align: center; margin-left: 310px;">
+                    <ul class="region-list" style="display: flex; justify-content: center; list-style: none; padding: 0; margin: 0;">
+                        <li style="margin: 0 10px;"><a href="#" class="active" style="text-decoration: none; color: #000; font-weight: bold;">U.S.</a></li>
+                        <li style="margin: 0 10px;"><a href="#" style="text-decoration: none; color: #555;">INTERNATIONAL</a></li>
+                        <li style="margin: 0 10px;"><a href="#" style="text-decoration: none; color: #555;">CANADA</a></li>
+                        <li style="margin: 0 10px;"><a href="#" style="text-decoration: none; color: #555;">ESPAÑOL</a></li>
+                        <li style="margin: 0 10px;"><a href="#" style="text-decoration: none; color: #555;">中文</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Right: User Tools -->
+                <div class="user-tools" style="flex: 0 0 auto; display: flex; align-items: center;">
+                    <a href="#" class="subscribe-button" style="background-color: #567b95; color: white; padding: 6px 8px; margin-right: 10px; text-decoration: none; font-size: 13px; font-weight: bold; border-radius: 3px;">SUBSCRIBE FOR $25/WEEK</a>
+                    <a href="#" class="login-button" style="background-color: #567b95; color: white; padding: 6px 10px; text-decoration: none; font-size: 13px; font-weight: bold; border-radius: 3px;">LOG IN</a>
+                </div>
+                
+            </div>
+            
+            <!-- Second Row -->
+            <div class="middle-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 10px; margin-top: 22px;">
+                <!-- Left: Date and Today's Paper -->
+                <div class="left-section" style="flex: 0 0 200px; display: block; padding-left: 0; margin-left: 0;">
+                    <div class="date" style="font-size: 15px; color: #333; text-align: left; padding: 0; margin: 0;">Friday, April 18, 2025</div>
+                    <div class="todays-paper" style="font-size: 15px; color: #333; text-align: left; padding: 0; margin: 4px 0 0 0;">Today's Paper</div>
+                </div>
+                
+                <!-- Center: NYT Logo -->
+                <div class="logo-container" style="flex: 1; text-align: center;">
+                    <a href="/" class="nyt-logo" style="text-decoration: none; color: #000;">
+                        <img src="images/66.png" alt="The New York Times Logo" style="height: 70px; object-fit: contain;">
+                    </a>
+                </div>
+                
+                
+                
+                <!-- Right: Stock Info -->
+                <div class="right-section" style="flex: 0 0 200px; text-align: right; margin-right: 20px;">
+                    <div class="stock-ticker" 
+                         style="font-size: 14px; color: #333; opacity: 1; transition: opacity 1s ease;"
+                         onmouseover="pauseRotation()" 
+                         onmouseout="resumeRotation()">
+                      <!-- Initial content will be filled by JavaScript -->
+                    </div>
+                  </div>
+                  
+                  <style>
+                    .stock-ticker.fade-out {
+                      opacity: 0;
+                    }
+                  </style>
+                  
+                  <script>
+                    const stockData = [
+                      { name: "S&P 500", change: "+0.13%", direction: "↑", color: "green" },
+                      { name: "Dow", change: "-0.05%", direction: "↓", color: "#d0021b" },
+                      { name: "Nasdaq", change: "+0.42%", direction: "↑", color: "green" }
+                    ];
+                  
+                    let currentIndex = 0;
+                    let rotationInterval;
+                  
+                    function updateStockTicker() {
+                      const tickerElement = document.querySelector('.stock-ticker');
+                  
+                      // Fade out
+                      tickerElement.classList.add('fade-out');
+                  
+                      // Wait for fade-out to complete (500ms), then update content and fade in
+                      setTimeout(() => {
+                        const stock = stockData[currentIndex];
+                        tickerElement.innerHTML = `
+                          ${stock.name} 
+                          <span class="stock-change" style="color: ${stock.color};">
+                            ${stock.change}
+                          </span> 
+                          ${stock.direction}
+                        `;
+                        tickerElement.classList.remove('fade-out');
+                        currentIndex = (currentIndex + 1) % stockData.length;
+                      }, 500);
+                    }
+                  
+                    function startRotation() {
+                      updateStockTicker();
+                      rotationInterval = setInterval(updateStockTicker, 5000); // every 5 seconds
+                    }
+                  
+                    function pauseRotation() {
+                      clearInterval(rotationInterval);
+                    }
+                  
+                    function resumeRotation() {
+                      startRotation();
+                    }
+                  
+                    document.addEventListener('DOMContentLoaded', startRotation);
+                  </script>
+                  
+            </div>
+            
+            <!-- Third Row: Main Navigation -->
+            <nav class="main-navigation" style="padding: 10px 0; text-align: center; margin-top: 26px;">
+                <ul class="nav-list" style="display: flex; justify-content: center; list-style: none; padding: 0; margin: 0 auto; flex-wrap: wrap; max-width: 100%; gap: 29px;">
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">U.S. <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">World <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Business <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Arts <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Lifestyle <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Opinion <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Audio <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Games <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Cooking <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">Wirecutter <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" style="text-decoration: none; color: #000; font-weight: normal; display: flex; align-items: center; font-family: 'nyt-franklin', arial, sans-serif; font-size: 14px;">The Athletic <span class="dropdown-arrow" style="font-size: 15px; margin-left: 3px;">▼</span></a>
+                    </li>
+                </ul>
+            </nav>
+            
+            
+            
+            <!-- Double Border Lines -->
+            <div class="header-border" style="margin-top: 5px;">
+                <div class="border-line" style="height: 1px; background-color: #000; margin-bottom: 3px;"></div>
+                <div class="border-line" style="height: 1px; background-color: #000;"></div>
+            </div>
+        </div>
+    </header>
+    
+    
+    <main class="main-container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <!-- Lead Story -->
+                <!-- Main Flex Container -->
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+
+    <!-- Left Column: Lead Story + Analysis Block -->
+    <div style="flex: 1;">
+        <!-- Lead Story -->
+        <article class="lead-story">
+            <div>
+                <span class="live-badge">Live</span>
+                <span class="timestamp">18m ago</span>
+            </div>
+            <h1 class="lead-headline" style="font-size: 1.6rem;">
+                Senator Meets With Wrongly Deported Maryland Man in El Salvador
+              </h1>
+            <p class="lead-summary">Senator Chris Van Hollen of Maryland said he met with Kilmar Armando Abrego Garcia, whose deportation has become a flashpoint in the immigration debate.</p>
+            <a href="#" class="see-more">See more updates ></a>
+        </article>
+
+        <!-- Analysis Block -->
+        <div class="analysis-block" style="margin-top: -18px;">
+            <div class="analysis-label">ANALYSIS</div>
+            <article class="story-card">
+                <h2 class="story-headline">Dual Orders From Judges Edge Courts Closer to Confrontation With White House</h2>
+                <div class="story-timestamp">7 MIN READ</div>
+                <p class="story-summary">The threat of investigations into whether the orders were violated comes as President Trump and his advisers are increasingly butting heads with the courts.</p>
+            </article>
+        </div>
+    </div>
+
+    <!-- Right Column: Image -->
+    <div style="flex: 1; text-align: right;">
+        <img src="images/2.png" alt="Meeting Image" style="width: 100%; max-width: 700px; height: auto; border-radius: 3px; transform: scale(1.13); margin-top: 50px;">
+        <p style="color: rgb(71, 63, 63); font-size: 14px; margin-top: 12px; font-style: italic;">The Office of Chris Van Hollen</p>
+    </div>
+    
+      
+    
+</div>
+<hr style="border: none; border-top: 1px solid lightgray; margin: 30px 0;margin-top: 2px;">
+
+                
+                <!-- Story Cards -->
+                <div style="display: flex; gap: 20px;margin-top: -19px;">
+                    <article class="story-card" style="flex: 1;">
+                        <h2 class="story-headline">Supreme Court to Hear Arguments on Trump Plan to End Birthright Citizenship</h2>
+                        <div class="story-timestamp">4 MIN READ</div>
+                    </article>
+                
+                    <article class="story-card" style="flex: 1; border-left: 1px solid lightgray; padding-left: 20px;">
+                        <h2 class="story-headline">What to Know About the Court Cases Challenging Trump's Immigration Agenda</h2>
+                        <div class="story-timestamp">4 MIN READ</div>
+                    </article>
+                </div>
+                
+                <hr style="border: none; border-top: 1px solid lightgray; margin: 30px 0;margin-top: -18px;">
+
+                <div style="display: flex; gap: 20px; align-items: flex-start; margin-top: -15px;">
+                    <!-- First article -->
+                    <article class="story-card" style="flex: 2;">
+                        <h2 class="story-headline">Read a Federal Appeals Panel's Sharp Rebuke of the Trump Administration</h2>
+                        <div class="story-timestamp">3 MIN READ</div>
+                        <p class="story-summary">"This should be shocking," the court wrote about the government's approach to a Maryland man's deportation. Our reporters annotated the ruling.</p>
+                    </article>
+                
+                    <!-- Image -->
+                    <div style="flex: 2.8;">
+                        <img src="images/3.png" alt="Court Document" style="width: 100%; height: auto; border-radius: 4px;">
+                    </div>
+                
+                    <!-- Divider + Second article -->
+                    <div style="flex: 2; border-left: 1px solid lightgray; padding-left: 20px;height: 220px;">
+                        <article class="story-card">
+                            <h2 class="story-headline">Court, in Strong Words, Presses White House to Play Active Role in Freeing Maryland Man</h2>
+                            <div class="story-timestamp">3 MIN READ</div>
+                        </article>
+                    </div>
+                </div>
+
+                <hr style="border: none; border-top: 1px solid rgb(37, 36, 36); margin: 30px 0;margin-top: -10px;">
+                
+                
+                <!-- Trump Administration Section -->
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;margin-top: -25px; flex-wrap: nowrap;">
+                    <button style="font-size: 16px; padding: 6px 10px; color: #060606; background-color: transparent; border: none; cursor: pointer;">
+                        Trump Administration
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Major Moves
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Approval Ratings
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Lawsuits Tracker
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Tracking the Layoffs
+                    </button>
+                </div>
+
+                
+             
+                <div style="display: flex; gap: 20px;">
+                    <!-- Left Column (Text stacked above/below) -->
+                    <div style="flex: 1;">
+                        <!-- Trump Administration Article -->
+                        <article class="news-card">
+                            <h3 class="news-headline">Trump Administration Says It Will Take Over Renovation of Penn Station</h3>
+                            <div class="story-timestamp">5 MIN READ</div>
+                            <p class="story-summary">The head of the federal Department of Transportation promised on Thursday to take away control from the Metropolitan Transportation Authority.</p>
+                        </article>
+                        <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+                        
+                        <!-- A Startling Admission Article -->
+                        <article class="news-card" style="margin-top: 10px;">
+                            <h3 class="news-headline">A Startling Admission From a Republican Senator: 'We Are All Afraid'</h3>
+                            <div class="story-timestamp">2 MIN READ</div>
+                        </article>
+                    </div>
+                    
+                    <!-- Right Column (Small Image) -->
+                    <div style="flex: 0 0 auto; width: 540px;">
+                        <img class="news-image" src="images/4.png" alt="Penn Station" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>   
+                </div>
+
+                <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+                
+
+                <div style="display: flex; gap: 20px; align-items: stretch;">
+                    <!-- First Article with Image -->
+                    <div style="display: flex; gap: 10px;">
+                        <div style="flex: 0 0 auto;">
+                            <img src="images/5.png" alt="Image" style="width: 70px; height: auto; border-radius: 5px; margin-top: 13px;">
+                        </div>
+                        <article style="margin-top: 10px;">
+                            <h3>Trump Opens a Huge Marine Protected Zone to Commercial Fishing</h3>
+                            <div>3 MIN READ</div>
+                        </article>
+                    </div>
+                
+                    <!-- Vertical Line -->
+                    <div style="border-left: 1px solid rgb(184, 181, 181); margin: 10px 5px 0 5px;"></div>
+
+                
+                    <!-- Second Article with Image -->
+                    <div style="display: flex; gap: 10px;">
+                        <div style="flex: 0 0 auto;">
+                            <img src="images/6.png" alt="Image" style="width: 70px; height: auto; border-radius: 5px; margin-top: 13px;">
+                        </div>
+                        <article style="margin-top: 10px;">
+                            <h3>Trump Official Asked I.R.S. About Audit of My Pillow Mogul</h3>
+                            <div>2 MIN READ</div>
+                        </article>
+                    </div>
+                </div>
+                
+                <div style="width: 100%; height: 1px; background-color: rgb(34, 33, 33); margin-top: 10px;"></div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 20px; margin-top: -1px; flex-wrap: nowrap;">
+                    <button style="font-size: 16px; padding: 6px 10px; color: #060606; background-color: transparent; border: none; cursor: pointer;">
+                        What to Know
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Fact Check
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Timeline
+                    </button>
+                    <button style="font-size: 16px; padding: 6px 10px; color: hsl(0, 0%, 54%); background-color: transparent; border: none; cursor: pointer;">
+                        Inside Trump’s Reversal
+                    </button>
+                </div>
+                
+                
+                
+                
+                <div style="display: flex; gap: 20px;">
+                    <!-- Left Column: Stacked Articles -->
+                    <div style="flex: 1;">
+                        <!-- First Article -->
+                        <article class="news-card">
+                            <h3 class="news-headline">Trump Welcomes a European Leader He Likes: Meloni of Italy</h3>
+                            <div class="story-timestamp">4 MIN READ</div>
+                            <p class="story-summary">Prime Minister Giorgia Meloni of Italy came to meet President Trump representing Italy, but in many ways on behalf of the rest of Europe.</p>
+                        </article>
+                
+                        <!-- Divider -->
+                        <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+                
+                        <!-- Second Article -->
+                        <article class="news-card" style="margin-top: 10px;">
+                            <h3 class="news-headline">France's Richest Man Counted Trump as a Friend. He Still Faces Tariffs.</h3>
+                            <div class="story-timestamp">4 MIN READ</div>
+                        </article>
+                    </div>
+                
+                    <!-- Right Column: Image -->
+                    <div style="flex: 0 0 auto; width: 440px;">
+                        <img class="news-image" src="images/7.png" alt="Penn Station" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>
+                </div>
+
+                <!-- Top Light Horizontal Line -->
+<div style="width: 100%; height: 1px; background-color: #444; margin: 30px 0 15px;"></div>
+
+<!-- Centered Text -->
+<div style="text-align: center; font-size: 15px; color: #333;">
+    Got a Tip? The Times offers several ways to send important information confidentially ›
+</div>
+
+<!-- Bottom Darker Horizontal Line -->
+<div style="width: 100%; height: 1px; background-color: #444; margin: 15px 0 30px;"></div>
+
+                
+                
+                <!-- The Great Read Section -->
+                <h2 class="section-title" style="font-size: 12px;">The Great Read</h2>
+                <div style="display: flex; gap: 20px;">
+                    <!-- Left Column: Stacked Articles -->
+                    <div style="flex: 1;">
+                        <!-- First Article -->
+                        <article class="news-card">
+                            <h3 class="news-headline">The Firefighter With O.C.D. and the Vaccine He Believed Would Kill Him</h3>
+                            <div class="story-timestamp">15 MIN READ</div>
+                            <p class="story-summary">For years, Timmy Reen tried to hide his compulsions and rituals from everyone at his New York City firehouse — until his secret was forced out in the open.</p>
+                        </article>
+                
+                        
+                    </div>
+                
+                    <!-- Right Column: Image -->
+                    <div style="flex: 0 0 auto; width: 440px;">
+                        <img class="news-image" src="images/8.png" alt="The Firefighter With O.C.D." style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div style="width: 100%; height: 1px; background-color: rgb(6, 5, 5); margin-top: 20px;"></div>
+                
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <!-- Left Column: Text -->
+                    <div style="flex: 1;">
+                        <article class="news-card">
+                            <h3 class="news-headline">Katie Perry Is Suing Katy Perry in Australia. Wait, What?</h3>
+                            <div class="story-timestamp">4 MIN READ</div>
+                            <p class="story-summary">The case between the two Perrys could set a precedent leaving some Australian businesses vulnerable to overseas brands.</p>
+                        </article>
+                    </div>
+                
+                    <!-- Right Column: Image -->
+                    <div style="flex: 0 0 auto; width: 440px;">
+                        <img class="news-image" src="images/9.png" alt="Katie Perry Is Suing Katy Perry" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>
+                </div>
+                
+                <!-- Light Gray Divider -->
+                <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: 20px;"></div>
+                
+                
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <!-- Left Column: Text -->
+                    <div style="flex: 1;">
+                        <article class="news-card">
+                            <h3 class="news-headline">At Least 2 Killed and 6 Injured in Florida State University Shooting</h3>
+                            <div class="story-timestamp">3 MIN READ</div>
+                            <p class="story-summary">The gunman, a student, was shot and wounded by responding officers, the sheriff said. Neither of the slain victims was a student at the university.</p>
+                        </article>
+
+                        <!-- Divider -->
+                        <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+                
+                        <!-- Second Article -->
+                        <article class="news-card" style="margin-top: 10px;">
+                            <h3 class="news-headline">Gunman Is Identified as Son of Sheriff’s Deputy</h3>
+                            <div class="story-timestamp">2 MIN READ</div>
+                        </article>
+                    </div>
+                
+                    <!-- Right Column: Image -->
+                    <div style="flex: 0 0 auto; width: 440px;">
+                        <img class="news-image" src="images/73.png" alt="Master of Suspense" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>
+                    
+                </div>
+                
+                <!-- Light Gray Divider -->
+                <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: 20px;"></div>
+
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <!-- Left Column: Text -->
+                    <div style="flex: 1;">
+                        <article class="news-card">
+                            <h3 class="news-headline">Overlooked No More: A Master of Suspense Who Inspired Hitchcock</h3>
+                            <div class="story-timestamp">4 MIN READ</div>
+                            <p class="story-summary">A powerhouse of the genre, Ethel Lina White published around 100 short stories and 17 novels, one of which was adapted into the film “The Lady Vanishes.”</p>
+                        </article>
+                    </div>
+                
+                    <!-- Right Column: Image or Video -->
+                    <div style="flex: 0 0 auto; width: 440px;">
+                        <img class="news-image" src="images/10.png" alt="Master of Suspense" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>
+                </div>
+                
+                <!-- Light Gray Divider -->
+                <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: 20px;"></div>
+                
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <!-- Left Column: Stacked Articles -->
+                    <div style="flex: 1;">
+                        <!-- First Article -->
+                        <article class="news-card">
+                            <h3 class="news-headline">5 Takeaways From Canada’s Election Debate</h3>
+                            <div class="story-timestamp">4 MIN READ</div>
+                            <p class="story-summary">President Trump’s threats against Canada loomed over the event, where Prime Minister Mark Carney was repeatedly the target of his opponents.</p>
+                        </article>
+                
+                        <!-- Divider -->
+                        <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+                
+                        <!-- Second Article -->
+                        <article class="news-card" style="margin-top: 10px;">
+                            <h3 class="news-headline">Paper Ballots, Hand Counting, No Machines: How Canadians Go to the Polls</h3>
+                            <div class="story-timestamp">4 MIN READ</div>
+                        </article>
+                    </div>
+                
+                    <!-- Right Column: Image -->
+                    <div style="flex: 0 0 auto; width: 440px;">
+                        <img class="news-image" src="images/11.png" alt="Canada Election" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+                    </div>
+                </div>
+                
+                <!-- Divider after section -->
+                <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: 20px;"></div>
+                
+                
+                <!-- More News Section -->
+                <h2 class="section-title" style="font-size: 18px;">More News</h2>
+                <!-- Top Section: Two stacked articles + side image -->
+<!-- Top Section: Harvard + Ukraine + Menendez on left, Image on right -->
+<!-- Top Section: Harvard + Ukraine + Menendez on left, Image on right -->
+<div style="display: flex; gap: 20px; margin-top: 30px;">
+    <!-- Left Column: 3 stacked articles -->
+    <div style="flex: 1;">
+        <!-- Harvard Article -->
+        <article class="news-card">
+            <h3 class="news-headline">Harvard’s Stand Against President Trump Is Helping It Raise More Money</h3>
+            <div class="story-timestamp">4 MIN READ</div>
+            <p class="story-summary">The Trump administration said it would take $2.2 billion in research funds from the school. Some donors are doing their best to make up for the shortfall.</p>
+        </article>
+
+        <!-- Divider -->
+        <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+
+        <!-- Ukraine Article -->
+        <article class="news-card" style="margin-top: 10px;">
+            <h3 class="news-headline">Ukraine and U.S. Sign Agreement in Lead-Up to a Full Minerals Deal</h3>
+            <div class="story-timestamp">3 MIN READ</div>
+            <p class="story-summary">The memorandum was thin on details, and the White House did not comment. But President Trump has said he expects to sign a full minerals deal with Kyiv soon.</p>
+        </article>
+
+        <!-- Divider -->
+        <div style="width: 100%; height: 1px; background-color: lightgray; margin-top: -1px;"></div>
+
+        <!-- Menendez Article -->
+        <article class="news-card" style="margin-top: 10px;">
+            <h3 class="news-headline">Judge Delays a Resentencing Hearing for the Menendez Brothers</h3>
+            <div class="story-timestamp">5 MIN READ</div>
+            <p class="story-summary">The proceedings were pushed back for three weeks over the issue of whether a key report on Erik and Lyle Menendez was admissible.</p>
+        </article>
+    </div>
+
+    <!-- Vertical Line Divider -->
+    <div style="width: 1px; background-color: lightgray;"></div>
+
+    <!-- Right Column: Top image + bottom Dutch article -->
+    <div style="flex: 0 0 auto; width: 460px;">
+        <!-- Image -->
+        <img class="news-image" src="images/12.png" alt="Politics Section" style="width: 100%; height: auto; border-radius: 5px; margin-left: 15px;">
+
+        
+
+        <!-- Dutch Article -->
+        <article class="news-card" style="margin-left: 15px; margin-top: 20px;">
+            <h3 class="news-headline">The Dutch Love Their Bicycles. Helmets? Not So Much.</h3>
+            <div class="story-timestamp">4 MIN READ</div>
+            <p class="story-summary">Cyclists comprise the highest number of road fatalities in the Netherlands. The country is trying to promote helmets, but cyclists are not convinced.</p>
+        </article>
+    </div>
+</div>
+
+<!-- Final Divider -->
+
+
+
+
+
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                
+                <article class="opinion-card" style="max-width: 400px;">
+                    <!-- Small Image -->
+                    <img src="images/13.png" alt="Lifting Routine" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+                
+                    <!-- Title (2.8x larger than text) -->
+                    <h3 class="opinion-headline" style="font-size: 1.2rem; margin-bottom: 8px;">
+                        I Didn’t Like Lifting Until I Tried These Simple Tricks
+                    </h3>
+                
+                    <!-- Body text -->
+                    <p style="font-size: 0.9rem; margin-bottom: 6px;">
+                        My gym routine may not be the best for building muscle, but it’s helped me build a habit.
+                    </p>
+                
+                    <!-- Timestamp -->
+                    <div class="story-timestamp" style="font-size: 0.64rem;">4 MIN READ</div>
+                </article>
+                
+                
+
+                <!-- Article Carousel Block -->
+                <div style="margin: 20px 0;">
+
+    <!-- Article Container -->
+    <div id="articleCarouselContainer" style="display: flex; gap: 20px; align-items: flex-start; min-height: 250px;">
+        <!-- Article 1 -->
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <img src="images/14.png" alt="Katy Perry Space" style="width: 100%; height: 160px; object-fit:fill; border-radius: 4px; margin-bottom: 8px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; line-height: 1.3;">Even in Space, Katy Perry Manages to Get Dunked On</h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem;">4 MIN READ</div>
+        </div>
+        
+        <!-- Divider -->
+        <div style="width: 1px; background-color: lightgray; height: auto;"></div>
+        
+        <!-- Article 2 -->
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <img src="images/15.png" alt="Friend Partner Trouble" style="width: 100%; height: 160px; object-fit:fill; border-radius: 4px; margin-bottom: 8px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; line-height: 1.3;">How Do I Tell My Old Friend That His New Partner Is a Dud?</h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem;">4 MIN READ</div>
+        </div>
+    </div>
+    
+    <!-- Navigation Buttons -->
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+        <button onclick="moveCarousel(-1)" style="padding: 8px 16px; background: #f7f7f7; border: 1px solid #e2e2e2; border-radius: 4px; cursor: pointer; transition: all 0.2s ease;"><</button>
+        <button onclick="moveCarousel(1)" style="padding: 8px 16px; background: #f7f7f7; border: 1px solid #e2e2e2; border-radius: 4px; cursor: pointer; transition: all 0.2s ease;">></button>
+    </div>
+</div>
+
+<script>
+// Add this script to your existing scripts
+let currentCarouselIndex = 0;
+const articles = [
+    {
+        image: "images/14.png",
+        title: "Even in Space, Katy Perry Manages to Get Dunked On",
+        readTime: "4 MIN READ"
+    },
+    {
+        image: "images/15.png",
+        title: "How Do I Tell My Old Friend That His New Partner Is a Dud?",
+        readTime: "4 MIN READ"
+    },
+    {
+        image: "images/16.png",
+        title: "Everything You Need to Know About This Year’s Met Gala",
+        readTime: "6 MIN READ"
+    },
+    {
+        image: "images/17.png",
+        title: "Our 17 Most Lemony Recipes",
+        readTime: "6 MIN READ"
+    }
+];
+
+function moveCarousel(direction) {
+    currentCarouselIndex += direction * 2;
+    if (currentCarouselIndex < 0) currentCarouselIndex = 0;
+    if (currentCarouselIndex >= articles.length) currentCarouselIndex = articles.length - 2;
+    
+    const container = document.getElementById('articleCarouselContainer');
+    container.innerHTML = '';
+    
+    for (let i = currentCarouselIndex; i < currentCarouselIndex + 2 && i < articles.length; i++) {
+        const article = articles[i];
+        container.innerHTML += `
+            <div style="flex: 1; display: flex; flex-direction: column;">
+                <img src="${article.image}" alt="${article.title}" style="width: 100%; height: 160px; object-fit:cover; border-radius: 4px; margin-bottom: 8px;">
+                <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; line-height: 1.3;">${article.title}</h3>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem;">${article.readTime}</div>
+            </div>
+            ${i < currentCarouselIndex + 1 && i < articles.length - 1 ? 
+              '<div style="width: 1px; background-color: lightgray; height: auto;"></div>' : ''}
+        `;
+    }
+}
+</script>
+                
+
+                
+
+                <!-- Opinion Section -->
+<div style="margin: 40px 0; border-top: 1px solid #e2e2e2; padding-top: 20px;">
+
+    <!-- Section Header -->
+    <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; color: #333;">Opinion</h2>
+
+    <!-- Author Name -->
+    <div style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #333;">
+        KATHLEEN KINGSBURY
+    </div>
+
+    <!-- Headline -->
+    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1.2rem; line-height: 1.3; margin-bottom: 15px;">
+        New Data From Meta Reveals a Different Picture of Human Migration
+    </h3>
+
+    <!-- Video Container (Positioned below text) -->
+    <div style="margin: 20px 0;">
+        <!-- Replace with your actual video -->
+        <img src="images/72.png" alt="Lifting Routine" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 11px; color: #666; margin-top: 5px; text-align: right; padding-right: 30px;">
+            The New York Times
+        </div>
+    </div>
+
+</div>
+<div style="width: 100%; height: 1px; background-color: lightgray; margin: 20px 0;"></div>
+                
+<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0; gap: 15px;">
+    <!-- Text content -->
+    <div style="flex: 1; margin-top: -90px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 0.75rem; color: #555; margin-bottom: 4px;">
+            Samuel Hammond
+        </div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1.1rem; line-height: 1.3; margin-bottom: 4px;">
+            Tariffs Won’t Fix Our Trade Imbalance. This Will.
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem;">
+            5 MIN READ
+        </div>
+    </div>
+
+    <!-- Small image on the right -->
+    <div>
+        <img src="images/18.png" alt="Trade Imbalance" style="width: 190px; height: 190px; object-fit: cover; border-radius: 4px;">
+    </div>
+</div>
+
+
+
+<!-- Opinion Columns Section -->
+<div style="margin: 30px 0; border-top: 1px solid #e2e2e2; padding-top: 20px;">
+
+    <!-- Two Column Layout -->
+    <div style="display: flex; gap: 20px;">
+
+        <!-- First Opinion Column -->
+        <div style="flex: 1;">
+            <div style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #333;">
+                FRANK BRUNI
+            </div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 19px; line-height: 1.3; margin-bottom: 8px;">
+                All the President's Flatterers
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                9 MIN READ
+            </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div style="width: 1px; background-color: #e2e2e2;"></div>
+
+        <!-- Second Opinion Column -->
+        <div style="flex: 1;">
+            <div style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #333;">
+                NICHOLAS KRISTOF
+            </div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 19px; line-height: 1.3; margin-bottom: 8px;">
+                It's Time to Protect America From America's President
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                5 MIN READ
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- Most Shared Section -->
+<!-- Most Shared Section -->
+<div style="margin: 30px 0; border-top: 1px solid #e2e2e2; padding-top: 20px;">
+
+    <!-- Section Header -->
+    <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; color: #333;">Most Shared</h2>
+
+    <!-- Article 1 -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e2e2e2;">
+        <div style="flex: 1; padding-right: 20px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+                Seth Rogen's Trump Jokes Are Edited Out of Awards Broadcast
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                2 MIN READ
+            </div>
+        </div>
+        <div style="width: 80px; height: 80px; overflow: hidden;">
+            <img src="images/19.png" alt="Seth Rogen" style="width: 100%; height: 100%; object-fit: fill; border-radius: 3px;">
+        </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e2e2e2;">
+        <div style="flex: 1; padding-right: 20px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+                Daily Pill May Work as Well as Ozempic for Weight Loss and Blood Sugar
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                6 MIN READ
+            </div>
+        </div>
+        <div style="width: 80px; height: 80px; overflow: hidden;">
+            <img src="images/20.png" alt="Ozempic alternative" style="width: 100%; height: 100%; object-fit: fill; border-radius: 3px;">
+        </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e2e2e2;">
+        <div style="flex: 1; padding-right: 20px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+                Hundreds of Giant Rodents 'Conquered' This Town. Now What?
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                5 MIN READ
+            </div>
+        </div>
+        <div style="width: 80px; height: 80px; overflow: hidden;">
+            <img src="images/21.png" alt="Giant rodents" style="width: 100%; height: 100%; object-fit: fill; border-radius: 3px;">
+        </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e2e2e2;">
+        <div style="flex: 1; padding-right: 20px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+                Lawyer Up? Increasingly, Americans Won't, or Can't.
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                16 MIN READ
+            </div>
+        </div>
+        <div style="width: 80px; height: 80px; overflow: hidden;">
+            <img src="images/22.png" alt="Lawyer" style="width: 100%; height: 100%; object-fit: fill; border-radius: 3px;">
+        </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div style="display: flex; justify-content: space-between;">
+        <div style="flex: 1; padding-right: 20px;">
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+                In 'Towards Zero,' Agatha Christie Gets Steamy
+            </h3>
+            <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">
+                4 MIN READ
+            </div>
+        </div>
+        <div style="width: 80px; height: 80px; overflow: hidden;">
+            <img src="images/23.png" alt="Agatha Christie" style="width: 100%; height: 100%; object-fit: fill; border-radius: 3px;">
+        </div>
+    </div>
+</div>
+<div style="width: 100%; height: 1px; background-color: lightgray; margin: 20px 0;"></div>
+    
+    <!-- News Items at Bottom -->
+    <div style="margin: 1350px 0 20px 0;">
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; line-height: 1.3;">
+            U.S. Arrests Man Wanted in India for Grenade Attack
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem; margin-bottom: 8px;">1 MIN READ</div>
+        <div style="width: 100%; height: 1px; background-color: lightgray; margin: 12px 0;"></div>
+        
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; line-height: 1.3;">
+            Columbia Activists Are Being Detained. Protesters Demand Answers.
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem; margin-bottom: 8px;">3 MIN READ</div>
+        <div style="width: 100%; height: 1px; background-color: lightgray; margin: 12px 0;"></div>
+        
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; line-height: 1.3;">
+            Measles Outbreaks in Canada and Mexico Bring Grim Prognosis
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem; margin-bottom: 8px;">4 MIN READ</div>
+        <div style="width: 100%; height: 1px; background-color: lightgray; margin: 12px 0;"></div>
+        
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; line-height: 1.3;">
+            France Acknowledges Devastating Effect of Debt Imposed on Haiti for Freedom
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem; margin-bottom: 8px;">4 MIN READ</div>
+        <div style="width: 100%; height: 1px; background-color: lightgray; margin: 12px 0;"></div>
+        
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; line-height: 1.3;">
+            Former Times Editor Testifies in Defamation Suit Filed by Sarah Palin
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem; margin-bottom: 8px;">3 MIN READ</div>
+    </div>
+    <div style="width: 100%; height: 1px; background-color: lightgray; margin: 20px 0;"></div>
+    
+    <div style="margin-bottom: 20px;">
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; line-height: 1.3;">
+            Cable Car Falls and Breaks Apart in Italy, Killing at Least 4 People
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; color: #666; font-size: 0.64rem;">2 MIN READ</div>
+    </div>
+                
+                
+                
+                
+            </aside>
+        </div>
+    </main>
+
+    <div style="width: calc(100% - 80px); height: 1px; background-color: lightgray; margin: 20px auto;"></div>
+    <div style="padding: 0 48px; margin-bottom: -24px;">
+        <h2 style="font-weight: bold; margin: 0;">The Athletic <span style="font-weight: normal; font-style: italic;"> Sports coverage</span></h2>
+      </div>
+    <!-- Wrapper with left and right padding -->
+<div style="padding: 0 48px;">  <!-- Adjust 40px as needed -->
+
+    <div style="display: flex; gap: 30px; margin: 40px 0; align-items: flex-start;">
+      
+      <!-- Left Column (Articles) -->
+      <div style="flex: 1; max-width: 30%;">
+        <div style="margin-bottom: 25px;">
+          <h3 style="font-weight: bold;">Tennis Player Apologizes After Requesting Her Opponent to Wear Deodorant</h3>
+          <p style="color: #555;">In her defeat in the Rouen Open, Harriet Dart complained to the umpire with court-side microphones picking up the audio: “She smells really bad.”</p>
+        </div>
+        <hr>
+        <div style="margin: 25px 0;">
+          <h3 style="font-weight: bold;">A Yankees Star Was Ejected From a Game. Then He Broke an M.L.B. Rule.</h3>
+          <p style="color: #555;">New York’s second baseman, Jazz Chisholm Jr., was thrown out for arguing balls and strikes. What he did next was the bigger problem.</p>
+        </div>
+        <hr>
+        <div style="margin-top: 25px;">
+          <h3 style="font-weight: bold;">Aaron Rodgers’ Latest Comments Remind the Jets They Were Right to Move On</h3>
+          <p style="color: #555;">The moment New York hired new head coach Aaron Glenn, it was ready for the next chapter. But Aaron Rodgers isn’t ready to move on.</p>
+        </div>
+      </div>
+  
+      <!-- Middle Column (Image) -->
+      <div style="flex: 1; max-width: 40%;">
+        <img src="images/24.png" alt="Tennis Player" style="width: 100%; height: 400px;object-fit: cover; border-radius: 4px;">
+        <div style="font-size: 0.75rem; color: gray; margin-top: 5px; text-align: right;">Getty Images</div>
+      </div>
+  
+      <!-- Right Column (Vertical Line + Articles) -->
+      <div style="flex: 1; max-width: 30%; display: flex; gap: 20px;">
+        <!-- Vertical Separator -->
+        <div style="width: 1px; background-color: #ccc;"></div>
+  
+        <!-- Right Content -->
+        <div style="flex: 1;">
+          <div style="margin-bottom: 20px; font-weight: bold;">Serena Williams 'doesn't know' if she regrets Super Bowl appearance</div>
+          <hr style="margin: 20px 0;">
+          <div style="margin-bottom: 20px; font-weight: bold;">How a sexual assault allegation decades ago rocked a city and upended a life</div>
+          <hr style="margin: 20px 0;">
+          <div style="margin-bottom: 20px; font-weight: bold;">Kareem Abdul-Jabbar speaks out on anti-DEI policies on Jackie Robinson Day</div>
+          
+          <hr style="margin: 20px 0;">
+          <div style="font-weight: bold; margin-bottom: 10px;">More Sports Coverage</div>
+  
+          <!-- Tags -->
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">Premier League</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">NFL</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">NBA</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">Champions League</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">Tennis</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">UK Women's Football</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">Formula 1</span>
+            <span style="background: #f2f2f2; padding: 5px 10px; border-radius: 15px;">International Football</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+
+<!-- Well Section -->
+<div style="margin: 30px 50px; border-top: 1px solid #383737; padding-top: 20px;">
+
+    <!-- Section Header -->
+    <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; color: #0c0c0c;">
+      Well
+    </h2>
+  
+    <!-- Articles Row -->
+    <div style="display: flex; gap: 20px; border-bottom: 1px solid #e2e2e2; padding-bottom: 20px;">
+      
+      <!-- Article -->
+      <div style="flex: 1;">
+        <img src="images/25.png" alt="Aging signs" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 5px; text-align: right; margin-top: -10px;">
+            Matt Chase
+          </div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+          4 Weird Signs You're Getting Older
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">4 MIN READ</div>
+      </div>
+  
+      <!-- Vertical Line -->
+      <div style="width: 1px; background-color: #e2e2e2;"></div>
+  
+      <!-- Article -->
+      <div style="flex: 1;">
+        <img src="images/26.png" alt="Heart-healthy diet" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 5px; text-align: right; margin-top: -10px;">
+          Giacomo Bagnaro
+        </div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+          The Heart-Healthy Diet Hardly Anyone Is Talking About
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">5 MIN READ</div>
+      </div>
+  
+      <!-- Vertical Line -->
+      <div style="width: 1px; background-color: #e2e2e2;"></div>
+  
+      <!-- Article -->
+      <div style="flex: 1;">
+        <img src="images/27.png" alt="Avocados" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 5px; text-align: right; margin-top: -10px;">
+          Rodol Lui for The New York Times
+        </div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+          How Healthy Are Avocados?
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">3 MIN READ</div>
+      </div>
+  
+      <!-- Vertical Line -->
+      <div style="width: 1px; background-color: #e2e2e2;"></div>
+  
+      <!-- Article -->
+      <div style="flex: 1;">
+        <img src="images/28.png" alt="IBS treatment" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 5px; text-align: right; margin-top: -10px;">
+          LU Giovanni for The New York Times
+        </div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+          What's the Best Way to Treat I.B.S.? A New Study Offers Clues.
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">5 MIN READ</div>
+      </div>
+  
+      <!-- Vertical Line -->
+      <div style="width: 1px; background-color: #e2e2e2;"></div>
+  
+      <!-- Article -->
+      <div style="flex: 1;">
+        <img src="images/29.png" alt="Anti-inflammatory foods" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666; margin-bottom: 5px; text-align: right; margin-top: -10px;">
+          Illustration by Susan Melville
+        </div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">
+          Foods That Fight Inflammation
+        </h3>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">4 MIN READ</div>
+      </div>
+  
+    </div>
+  </div>
+
+  <!-- Culture and Lifestyle Section -->
+  <!-- Section Wrapper -->
+<div style="margin: 30px 50px; border-top: 1px solid #2b2a2a; padding-top: 10px;">
+
+    <!-- Section Header (Stays on its own line) -->
+    <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; color: #333;">
+      Culture and Lifestyle
+    </h2>
+  
+    <!-- Flex Container (Content starts here) -->
+    <div style="display: flex; gap: 20px;">
+  
+      <!-- Olivia Munn Article (20%) -->
+      <div style="flex: 0.2;display: flex; flex-direction: column; justify-content: center;">
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.3; margin-bottom: 10px;">
+          Olivia Munn's 5 Favorite Places in Tokyo
+        </h3>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 16px; line-height: 1.4; margin-bottom: 10px;">
+          The actress, who stars in the new Apple TV+ series "Your Friends & Neighbors," guides a treasure hunt through the city where she spent much of her childhood.
+        </p>
+        <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">4 MIN READ</div>
+      </div>
+  
+      <!-- Main Image (50%) -->
+      <div style="flex: 0.5; display: flex; flex-direction: column;">
+        <img src="images/30.png" alt="Tokyo by Olivia Munn" style="width: 100%; height: auto; object-fit: cover; border-radius: 4px;">
+        <div style="width: 100%; font-family: 'nyt-imperial', georgia, serif; font-size: 12px; color: #aaa; font-style: italic; margin-top: 8px; text-align: right;">
+          Olivia Munn shares her favorite spots in Tokyo. Photo by Richard A. Brooks/APP — Getty Images.
+        </div>
+      </div>
+  
+      <!-- Vertical Divider -->
+      <div style="width: 1px; background-color: #e2e2e2;"></div>
+  
+      <!-- Right-side Articles (30%) -->
+      <div style="flex: 0.3; display: flex; flex-direction: column; gap: 20px;">
+  
+        <!-- Tucson -->
+        <div>
+          <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 19px; line-height: 1.3; margin-bottom: 10px;">
+            Tucson, Ariz.: Western Skies and Competitive Home Prices
+          </h3>
+          <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 10px;">
+            A city celebrated for its food scene also provides hiking, cycling and stargazing.
+          </p>
+          <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">5 MIN READ</div>
+        </div>
+  
+        <div style="width: 100%; height: 1px; background-color: #e2e2e2;"></div>
+  
+        <!-- Rentals -->
+        <div>
+          <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 10px;">
+            Rentals Under $4,000 in Los Angeles
+          </h3>
+          <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 10px;">
+            A bungalow in Topanga Canyon, a unit in Hollywood and an apartment in Redondo Beach.
+          </p>
+          <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">5 MIN READ</div>
+        </div>
+  
+        <div style="width: 100%; height: 1px; background-color: #e2e2e2;"></div>
+  
+        <!-- Cheapskate -->
+        <div>
+          <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 10px;">
+            A Cheapskate in London
+          </h3>
+          <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 10px;">
+            Our Frugal Travel columnist took a budget-stretching trip to one of the world's most expensive cities.
+          </p>
+          <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 12px; color: #666;">6 MIN READ</div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <!-- Audio Podcasts Section -->
+<div style="margin: 40px 0; border-top: 1px solid #e2e2e2; padding-top: 20px;">
+    <div style="padding: 0 50px;">
+
+    <!-- Section Header -->
+    <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; color: #333;">Audio Podcasts and narrated articles</h2>
+
+    
+
+    <!-- Audio Items Container -->
+    <div style="display: flex; gap: 0; overflow-x: auto; padding-bottom: 10px;">
+        
+        <!-- Audio Item 1 -->
+        <div style="display: flex; min-width: 300px; padding-right: 15px;">
+            <div style="width: 100px; height: 100px; background-color: #f5f5f5; border-radius: 8px; margin-right: 15px; flex-shrink: 0;">
+                <img src="images/31.png" alt="..." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>            
+            <div>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 11px; color: #666; margin-bottom: 5px; text-transform: uppercase;">THE DAILY AUDIO</div>
+                <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">The Trial Mark Zuckerberg Couldn't Prevent</h3>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 13px; color: #666;">24 MIN LISTEN</div>
+            </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div style="width: 1px; background-color: #e2e2e2; margin: 0 15px;"></div>
+
+        <!-- Audio Item 2 -->
+        <div style="display: flex; min-width: 300px; padding-right: 15px;">
+            <div style="width: 100px; height: 100px; background-color: #f5f5f5; border-radius: 8px; margin-right: 15px; flex-shrink: 0;">
+                <img src="images/34.png" alt="Modern Love Audio" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>
+            <div>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 11px; color: #666; margin-bottom: 5px; text-transform: uppercase;">MODERN LOVE AUDIO</div>
+                <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">Gen X? More Like Gen Sex.</h3>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 13px; color: #666;">37 MIN LISTEN</div>
+            </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div style="width: 1px; background-color: #e2e2e2; margin: 0 15px;"></div>
+
+        <!-- Audio Item 3 -->
+        <div style="display: flex; min-width: 300px; padding-right: 15px;">
+            <div style="width: 100px; height: 100px; background-color: #f5f5f5; border-radius: 8px; margin-right: 15px; flex-shrink: 0;">
+                <img src="images/32.png" alt="Reporter Reads Audio" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>
+            <div>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 11px; color: #666; margin-bottom: 5px; text-transform: uppercase;">REPORTER READS AUDIO</div>
+                <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">She Worked in a Harvard Lab on Aging, Until ICE Jailed Her</h3>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 13px; color: #666;">24 MIN LISTEN</div>
+            </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div style="width: 1px; background-color: #e2e2e2; margin: 0 15px;"></div>
+
+        <!-- Audio Item 4 -->
+        <div style="display: flex; min-width: 300px;">
+            <div style="width: 100px; height: 100px; background-color: #f5f5f5; border-radius: 8px; margin-right: 15px; flex-shrink: 0;">
+                <img src="images/33.png" alt="Reporter Reads Audio" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0px;">
+            </div>
+            <div>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 11px; color: #666; margin-bottom: 5px; text-transform: uppercase;">REPORTER READS AUDIO</div>
+                <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 5px;">Held Captive for 20 Years, He Found Freedom in a Fire</h3>
+                <div style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 13px; color: #666;">20 MIN LISTEN</div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div style="width: 100%; height: 1px; background-color: rgb(52, 52, 52); margin: 20px 0;"></div>
+
+<!-- Games Section -->
+<div style="margin: 40px 0; padding: 20px 50px 0 50px; margin-top: -19px;">
+
+    <!-- Section Headers -->
+    <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+        <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-weight: bold; text-transform: uppercase; color: #333; letter-spacing: 0.5px;">GAMES</h2>
+        <h2 style="font-family: 'nyt-franklin', arial, sans-serif; font-size: 15px; font-style: italic; text-transform: capitalize; color: #333; letter-spacing: 0.5px;">Daily puzzles</h2>
+    </div>
+
+    <!-- Games Grid -->
+    <div style="display: grid; grid-template-columns: 1fr 1px 1fr; gap: 30px;">
+
+        <!-- Left Column -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            <!-- Game Item -->
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e2e2; padding-bottom: 15px;">
+                <div>
+                    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; margin-bottom: 8px;">Wordle</h3>
+                    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; color: #333; margin: 0;">Guess the 5-letter word with 6 chances.</p>
+                </div>
+                <img src="images/35.png" alt="Wordle" style="width: 140px; height: 140px; object-fit: cover; border-radius: 4px;">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e2e2; padding-bottom: 15px;">
+                <div>
+                    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; margin-bottom: 8px;">Connections</h3>
+                    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; color: #333; margin: 0;">Group words that share a common thread.</p>
+                </div>
+                <img src="images/36.png" alt="Connections" style="width: 140px; height: 140px; object-fit: cover; border-radius: 4px;">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e2e2; padding-bottom: 15px;">
+                <div>
+                    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; margin-bottom: 8px;">Strands</h3>
+                    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; color: #333; margin: 0;">Uncover hidden words and reveal the theme.</p>
+                </div>
+                <img src="images/37.png" alt="Strands" style="width: 140px; height: 140px; object-fit: cover; border-radius: 4px;">
+            </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div style="width: 1px; background-color: #e2e2e2;"></div>
+
+        <!-- Right Column -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e2e2; padding-bottom: 15px;">
+                <div>
+                    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; margin-bottom: 8px;">Spelling Bee</h3>
+                    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; color: #333; margin: 0;">How many words can you make with 7 letters?</p>
+                </div>
+                <img src="images/38.png" alt="Spelling Bee" style="width: 140px; height: 140px; object-fit: cover; border-radius: 4px;">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e2e2; padding-bottom: 15px;">
+                <div>
+                    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; margin-bottom: 8px;">The Crossword</h3>
+                    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; color: #333; margin: 0;">Get clued in with wordplay, every day.</p>
+                </div>
+                <img src="images/39.png" alt="Crossword" style="width: 140px; height: 140px; object-fit: cover; border-radius: 4px;">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e2e2; padding-bottom: 15px;">
+                <div>
+                    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; margin-bottom: 8px;">The Mini Crossword</h3>
+                    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; color: #333; margin: 0;">Solve this bite-sized puzzle in just a few minutes.</p>
+                </div>
+                <img src="images/40.png" alt="Mini Crossword" style="width: 140px; height: 140px; object-fit: cover; border-radius: 4px;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- End Section Horizontal Lines -->
+<div style="padding: 0 50px; margin-top: 25px;">
+
+</div>
+
+<!-- News Section -->
+<div style="margin: 40px 0; border-top: 1px solid #090808; padding: 20px 50px 0 50px;">
+
+    <!-- Section Header -->
+    <h2 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; color: #121212; text-transform: uppercase;">News</h2>
+
+    <!-- News Categories Grid -->
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 30px;">
+        
+        <!-- World News -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">World News</h3>
+            <img src="images/41.png" alt="World News" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Europe Seeks a Direct Line to Trump, Skeptical That Aides Speak for Him</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">China Wants Countries to Unite Against Trump, but Is Met With Wariness</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">5 Takeaways From Canada's Election Debate</p>
+        </div>
+        
+        <!-- Technology -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Technology</h3>
+            <img src="images/42.png" alt="Technology" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Google Broke the Law to Keep Its Advertising Monopoly, a Judge Rules</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">At Trial, Sheryl Sandberg Says Meta-Nurtured Instagram and Did Not Stifle It</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Mr. Zuckerberg Goes to Washington and Buys a Mansion</p>
+        </div>
+        
+        <!-- U.S. News -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">U.S. News</h3>
+            <img src="images/43.png" alt="U.S. News" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">With Harvard Threat, Trump Tries to Bend the I.R.S. to His Will</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">The Conservative Christian Network Inside the White House</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Milwaukee's Lead Crisis: Flaky Paint, Closed Schools and a C.D.C. in Retreat</p>
+        </div>
+        
+        <!-- Science -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Science</h3>
+            <img src="images/44.png" alt="Science" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">It Took a Century to Find This Colossal Squid</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">How to Evade Taxes in Ancient Rome? A 1,900-Year-Old Papyrus Offers a Guide.</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">DOGE Cuts Hobble Office That Would Aid NASA and SpaceX Mars Landings</p>
+        </div>
+        
+        <!-- U.S. Politics -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">U.S. Politics</h3>
+            <img src="images/45.png" alt="U.S. Politics" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">White House of Worship: Christian Prayer Rings Out Under Trump</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">With Harvard Threat, Trump Tries to Bend the I.R.S. to His Will</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Pride and Dread in Harvard Yard as Trump Wars With the University</p>
+        </div>
+    </div>
+
+    <!-- Second Row of News Categories -->
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;">
+        
+        <!-- Sports -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Sports</h3>
+            <img src="images/46.png" alt="Sports" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Rory McIlroy Won the Masters, Finally. The Roars Told the Story.</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Paige Bueckers Is Ushering In a New Generation of W.N.B.A. Stars</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">How 72 Hours of Turmoil Suddenly Rocked College Football in April</p>
+        </div>
+        
+        <!-- New York -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">New York</h3>
+            <img src="images/47.png" alt="New York" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Business</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">U.S. Indicts Luigi Mangione in Killing of Health Insurance Executive</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Columbia Activists Are Being Detained. Protesters Demand Answers.</p>
+        </div>
+        
+        <!-- Business -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Business</h3>
+            <img src="images/48.png" alt="Business" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Trump Administration Says It Will Take Over Renovation of Penn Station</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Obituaries</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Elaine Wynn, Billionaire Arts Patron Who Helped Modernize Las Vegas, Dies at 82</p>
+        </div>
+        
+        <!-- Obituaries -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Obituaries</h3>
+            <img src="images/49.png" alt="Obituaries" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Robert E. McGinnis, Whose Lusty Illustrations Defined an Era, Dies at 99</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Francis Davis, Sharp-Eared Jazz Critic, Is Dead at 78</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">It's Gotten Riskier to Be a Long-Term Investor</p>
+        </div>
+        
+        <!-- The Upshot -->
+        <div>
+            <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">The Upshot</h3>
+            <img src="images/50.png" alt="The Upshot" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Is This the End of Impulse Shopping?</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Google Broke the Law to Keep Its Advertising Monopoly, a Judge Rules</p>
+            <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Can You Stop an Outbreak of a Contagious Disease?</p>
+        </div>
+    </div>
+
+    <!-- Third Row of News Categories -->
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 35px;">
+
+<!-- Climate and Environment -->
+<div>
+    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Climate and Environment</h3>
+    <img src="images/51.png" alt="Climate and Environment" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Trump Opens a Huge Marine Protected Zone to Commercial Fishing</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Weather Service Prepares for 'Degraded Operations' Amid Trump Cuts</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">By Redefining 'Harm,' Agencies Aim to End Longstanding Wildlife Protections</p>
+</div>
+
+<!-- Education -->
+<div>
+    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Education</h3>
+    <img src="images/52.png" alt="Education" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Why Harvard Decided to Fight Trump</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">What to Know as Trump Freezes Federal Funds for Harvard and Other Universities</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">A.C.L.U. Sues Defense Department Schools Over Book Bans</p>
+</div>
+
+<!-- Health -->
+<div>
+    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Health</h3>
+    <img src="images/53.png" alt="Health" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">As Fentanyl Deaths Slow, Meth Comes for Maine</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Countries Agree on Treaty Aimed at Preventing Global Health Crises</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Patients Cut Off From Cheaper Obesity Drugs as the F.D.A. Halts Sales of Copycats</p>
+</div>
+
+<!-- Reader Center -->
+<div>
+    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Reader Center</h3>
+    <img src="images/54.png" alt="Reader Center" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Finding 314 Things the Government Might Know About You</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">How a Reporter Stopped Worrying and Learned to Love Steak Fries</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Spelling Bee Buddy: Personalized Hints That Update as You Play</p>
+</div>
+
+<!-- Explore Times Events -->
+<div>
+    <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Explore Times Events</h3>
+    <img src="images/55.png" alt="Explore Times Events" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Join NYT Cooking for an 'Easy Weeknight Dinners' Book Talk in N.Y.C.</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Join Us to Hear About the Loopholes of Hawaii's Pay-to-Play Law</p>
+    <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">'The Daily' Podcast at the Tribeca Festival</p>
+</div>
+</div>
+
+<!-- Space between previous section and Opinion -->
+<div style="margin-top: 40px;"></div>
+<h2 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; color: #121212; text-transform: uppercase;">OPINION</h2>
+
+<!-- Opinion Section -->
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 20px;">
+    
+
+    <!-- Opinion -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Opinion</h3>
+        <img src="images/56.png" alt="Opinion" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Do Not Sleepwalk Through Trump’s Attack on the Fed’s Independence</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">13 Trump Voters on the Highs and Lows of His Term So Far</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Did Anyone Really Think Kennedy Would Soften His Hostility to Vaccines?</p>
+    </div>
+
+    <!-- Opinion Columnists -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Opinion Columnists</h3>
+        <img src="images/57.png" alt="Opinion Columnists" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">‘Citizens, Watch Out’: Three Opinions Writers on Trump’s Supreme Court Defiance</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">What’s Happening Is Not Normal. America Needs an Uprising That Is Not Normal.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">The Chilling Displays of Devotion That Trump Demands of His Enablers</p>
+    </div>
+
+    <!-- Editorials -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Editorials</h3>
+        <img src="images/58.png" alt="Editorials" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">What Harvard Has Set the Stage For</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Build Homes on Federal Land</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Trump’s Tariff Pause Is Less Than Meets the Eye</p>
+    </div>
+
+    <!-- Guest Essays -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Guest Essays</h3>
+        <img src="images/59.png" alt="Guest Essays" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Did Anyone Really Think Kennedy Would Soften His Hostility to Vaccines?</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Do Not Sleepwalk Through Trump’s Attack on the Fed’s Independence</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">My School District Could Have Avoided This Supreme Court Case</p>
+    </div>
+
+    <!-- Sunday Opinion -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Sunday Opinion</h3>
+        <img src="images/60.png" alt="Sunday Opinion" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Biden’s Team Wishes They’d Moved So Much Faster</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">America Is Learning the Wrong Lesson From Elon Musk’s Success</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">A Lot About Trump Doesn’t Add Up</p>
+    </div>
+</div>
+
+<div style="margin-top: 40px;"></div>
+<h2 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; color: #121212; text-transform: uppercase;">Arts</h2>
+
+<!-- Opinion Section -->
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 20px;">
+    
+
+    <!-- Opinion -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Arts</h3>
+        <img src="images/61.png" alt="Opinion" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Rashid Johnson Finds His Promised Land at the Guggenheim</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">The Hype at Coachella This Year? Billboards.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">A Monsoon Is About to Hit These Pirates.</p>
+    </div>
+
+    <!-- Opinion Columnists -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Arts and Design</h3>
+        <img src="images/62.png" alt="Opinion Columnists" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">At the Met Roof Reopening, These Sculptures Must Be Heard</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">At the Architecture Biennale, the U.S. Says 'Come Sit by Me'</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Martin Wong, Medici of the Aerosol Art Set</p>
+    </div>
+
+    <!-- Editorials -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Movies</h3>
+        <img src="images/63.png" alt="Editorials" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">'Sinners' Review: Ryan Coogler's Southern Horror Fantasia</p>
+            
+            
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Michael B. Jordan, Ryan Coogler and a Dozen Years of Collaborations</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">'The Wedding Banquet' Review: The Family You Find</p>
+    </div>
+
+    <!-- Guest Essays -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Television</h3>
+        <img src="images/64.png" alt="Guest Essays" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">'Government Cheese' Review: Moving on Up, to the Surreal Side</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Kids, Inc.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;"> In 'Towards Zero,' Agatha Christie Gets Steamy</p>
+    </div>
+
+    <!-- Sunday Opinion -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Music</h3>
+        <img src="images/65.png" alt="Sunday Opinion" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">The Hype at Coachella This Year? Billboards.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Playboi Carti and His Offspring Ponder Life After Rage-Rap</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">The Concert Cold War in a Quiet Enclave</p>
+    </div>
+</div>
+
+<div style="margin-top: 40px;"></div>
+<h2 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; color: #121212; text-transform: uppercase;">Living</h2>
+
+<!-- Living Section -->
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 20px;">
+    
+    <!-- Style -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Style</h3>
+        <img src="images/67.png" alt="Style" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Gloria Gaynor Hit Hard Times After 'I Will Survive.' Now She's Back.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">LVMH Abruptly Puts Dior Men in Jonathan Anderson's Hands</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Even Levitating in Space, Katy Perry Manages to Get Dunked On</p>
+    </div>
+
+    <!-- Food -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Food</h3>
+        <img src="images/68.png" alt="Food" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">This Spicy Clam Chowder Is St. Augustine's Best-Kept Secret</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Easter Desserts Anyone Can Make</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">A Chicken à la King That's Actually Fit for a King</p>
+    </div>
+
+    <!-- Well -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">Well</h3>
+        <img src="images/69.png" alt="Well" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">When a Small Rejection Feels Like 'the End of the World'</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">How Is Climate Change Harming Health? Studying That Just Got Harder.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Leading Nutrition Scientist Departs N.I.H., Citing Censorship</p>
+    </div>
+
+    <!-- The New York Times Magazine -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">The NYT Magazine</h3>
+        <img src="images/70.png" alt="The New York Times Magazine" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Lawyer Up? Increasingly, Americans Won't, or Can't.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">The Techno-Utopians Who Want to Colonize the Sea</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">Is New York Becoming the City That Sleeps?</p>
+    </div>
+
+    <!-- T Magazine -->
+    <div>
+        <h3 style="font-family: 'nyt-cheltenham', georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 15px; color: #121212;">T Magazine</h3>
+        <img src="images/71.png" alt="T Magazine" style="width: 100%; height: 150px; object-fit: fill; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">Magnolias Are in Bloom. It's Time to Eat Them.</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">How to Throw Your Own Birthday Party</p>
+        <p style="font-family: 'nyt-imperial', georgia, serif; font-size: 14px; line-height: 1.4;">In Milan, an Artist's Surreal 'Playhouse' Filled With Weeping Statues</p>
+    </div>
+</div>
+
+  
+
+  
+<footer class="site-footer" style="font-family: 'nyt-franklin', arial, sans-serif; background: white; color: #333; padding: 10px 10px; border-top: 1px solid #e2e2e2; margin-top: 70px;">
+    <div class="footer-container" style="max-width: 1400px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <div style="font-family: 'nyt-cheltenham', Georgia, serif; font-size: 24px; font-weight: 700; margin: 0; padding-right: 30px;">
+                <img src="images/66.png" alt="The New York Times Logo" style="height: 40px;">
+            </div>
+            
+        </div>
+        <div class="footer-grid" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <!-- News Column -->
+            <div class="footer-column" style="flex: 1; min-width: 0; padding-right: 20px;">
+                <h3 class="footer-column-title" style="font-size: 16px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">News</h3>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Home Page</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">U.S.</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">World</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Politics</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">New York</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Education</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Sports</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Business</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tech</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Science</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Weather</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The Great Read</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Obituaries</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Headway</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Visual investigations</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The Magzine</a>
+            </div>
+            
+            <!-- Arts Column -->
+            <div class="footer-column" style="flex: 1; min-width: 0; padding-right: 20px;">
+                <h3 class="footer-column-title" style="font-size: 16px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">Arts</h3>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Book Review</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Best Sellers Book List</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dance</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Movies</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Music</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Pop Culture</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Television</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Theater</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Visual Arts</a>
+            </div>
+            
+            <!-- Lifestyle Column -->
+            <div class="footer-column" style="flex: 1; min-width: 0; padding-right: 20px;">
+                <h3 class="footer-column-title" style="font-size: 16px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">Lifestyle</h3>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Health</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Well</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Food</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Restaurant Reviews</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Love</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Travel</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Style</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Fashion</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Real Estate</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">T Magazine</a>
+            </div>
+            
+            <!-- Opinion Column -->
+            <div class="footer-column" style="flex: 1; min-width: 0; padding-right: 20px;">
+                <h3 class="footer-column-title" style="font-size: 16px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">Opinion</h3>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Today's Opinion</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Columnists</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Editorials</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Guest Essays</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Op-Docs</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Letters</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Sunday Opinion</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Opinion Video</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Opinion Audio</a>
+            </div>
+            
+            <!-- More Column -->
+            <div class="footer-column" style="flex: 1; min-width: 0; padding-right: 20px;">
+                <h3 class="footer-column-title" style="font-size: 16px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">More</h3>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Audio</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Games</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Cooking</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Wirecutter</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The Athletic</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Jobs</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Video</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Graphics</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Trending</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Live Events</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Corrections</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Reader Center</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">TimesMachine</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The Learning Network</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">School of The NYT</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">inEducation</a>
+            </div>
+            
+            <!-- Account Column -->
+            <div class="footer-column" style="flex: 1; min-width: 0; padding-left: 20px; border-left: 1px solid #e2e2e2;">
+                <h3 class="footer-column-title" style="font-size: 16px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">Account</h3>
+                <a href="#" class="footer-link" style="display: flex; align-items: center; color: #333; text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 10px;">
+                    <span style="margin-right: 8px;">→</span> Subscribe
+                </a>
+                <a href="#" class="footer-link" style="display: flex; align-items: center; color: #333; text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 10px;">
+                    <span style="margin-right: 8px;">⚙️</span> Manage Account
+                </a>
+                <a href="#" class="footer-link" style="display: flex; align-items: center; color: #333; text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 10px;">
+                    <span style="margin-right: 8px;">🏠</span> Home Delivery
+                </a>
+                <a href="#" class="footer-link" style="display: flex; align-items: center; color: #333; text-decoration: none; font-size: 14px; font-weight: 600; margin-bottom: 10px;">
+                    <span style="margin-right: 8px;">🎁</span> Gift Subscriptions
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Group Subscriptions</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Gift Articles</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #e2e2e2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Email Newsletters</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">NYT Licensing</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Replica Edition</a>
+                <a href="#" class="footer-link" style="display: block; color: #333; text-decoration: none; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Times Store</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom" style="border-top: 1px solid #e2e2e2; padding-top: 15px;">
+            <div class="footer-links" style="display: flex; flex-wrap: nowrap; justify-content: space-between; margin: 0 30px; overflow-x: auto; white-space: nowrap;">
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">© 2025 The New York Times Company</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">NYTCo</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Contact Us</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Accessibility</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Work with us</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Advertise</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">T Brand Studio</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Your Ad Choices</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Privacy Policy</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Terms of Service</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Terms of Sale</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Site Map</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Help</a>
+                <a href="#" class="footer-small-link" style="color: #666; text-decoration: none; font-size: 12px; flex-shrink: 0;">Subscriptions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+    .footer-link:hover, .footer-small-link:hover {
+        text-decoration: underline !important;
+    }
+</style>
+
+
+    <script>
+        // Document Ready Function
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation Handling
+            const navItems = document.querySelectorAll('.nav-item a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.textContent;
+                    console.log('Navigating to:', section);
+                    // In a real implementation, this would load the appropriate section
+                    
+                    // Update active state
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Article Click Handling
+            const articles = document.querySelectorAll('.story-card, .news-card, .opinion-card');
+            articles.forEach(article => {
+                article.addEventListener('click', function(e) {
+                    // Don't interfere with link clicks inside articles
+                    if (e.target.tagName === 'A') return;
+                    
+                    const headline = this.querySelector('.lead-headline, .story-headline, .news-headline, .opinion-headline');
+                    console.log('Opening article:', headline.textContent);
+                    // In a real implementation, this would open the full article
+                });
+            });
+            
+            // Subscribe Button Animation
+            const subscribeBtn = document.querySelector('.subscribe-button');
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+                
+                subscribeBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+            
+            // Mobile Menu Toggle (would be fully implemented in a real site)
+            function setupMobileMenu() {
+                if (window.innerWidth < 768) {
+                    // Create mobile menu toggle button
+                    const mobileToggle = document.createElement('button');
+                    mobileToggle.className = 'mobile-menu-toggle';
+                    mobileToggle.innerHTML = '☰ Menu';
+                    
+                    const header = document.querySelector('.site-header');
+                    header.insertBefore(mobileToggle, header.firstChild);
+                    
+                    // Toggle menu visibility
+                    mobileToggle.addEventListener('click', function() {
+                        const nav = document.querySelector('.main-navigation');
+                        nav.style.display = nav.style.display === 'none' ? 'block' : 'none';
+                    });
+                    
+                    // Initially hide nav on small screens
+                    document.querySelector('.main-navigation').style.display = 'none';
+                }
+            }
+            
+            // Check screen size on load and resize
+            setupMobileMenu();
+            window.addEventListener('resize', setupMobileMenu);
+            
+            // Timestamp formatting
+            function formatTimestamps() {
+                const timestamps = document.querySelectorAll('.timestamp');
+                timestamps.forEach(ts => {
+                    if (ts.textContent.includes('MIN READ')) {
+                        ts.style.fontFamily = "'nyt-franklin', arial, sans-serif";
+                        ts.style.color = "#666";
+                        ts.style.fontSize = "13px";
+                    }
+                });
+            }
+            formatTimestamps();
+        });
+
+    </script>
+    
+      
+</body>
+</html>
