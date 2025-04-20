@@ -11,7 +11,10 @@ As soon as I realized the exposure risk, I made the repository **private immedia
 
 🔐 **This project is 100% original and built entirely by me from scratch.** All enhancements and replication efforts were done manually with attention to detail, without copying or reusing others’ code.
 
+📝 I later realized that, as per the official **rules and guidelines**, the GitHub repository is only meant to be submitted **after the frontend is shortlisted**. I accept that I **mistakenly made it public too early**, as I had not read that part of the instructions carefully. It was entirely my fault, and I sincerely apologize for the oversight.
+
 ---
+
 
 
 > 🚀 Submission by Utkarsh | Pixel Plus Hackathon  
