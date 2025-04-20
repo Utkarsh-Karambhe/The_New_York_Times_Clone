@@ -7,6 +7,14 @@
 
 ---
 
+## 🎥 Original Reference (NYTimes homepage as of April 18, 2025)
+
+> Since NYTimes updates daily, here’s a screen recording of the homepage I cloned for pixel accuracy:
+
+🔗 [Click here to view original NYTimes homepage video that I cloned](https://drive.google.com/file/d/1YDG2UPTEEdvyOSc5cE1tzpglWdyk_Dyg/view?usp=sharing)
+
+---
+
 ## 🎯 Objective
 
 This submission is a **pixel-perfect recreation** of the homepage of **The New York Times**, built fully in **HTML, CSS, and JavaScript** — all in a single HTML file as per the competition rules. The clone replicates typography, layout, spacing, and responsiveness down to the finest detail.
