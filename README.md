@@ -1,8 +1,8 @@
 # 📰 Pixel Plus Hackathon 2025 — NYTimes Clone + Enhancements
 
 > 🚀 Submission by Utkarsh | Pixel Plus Hackathon  
-> 🔗 Hosted Version: [Click here to view live site](https://your-live-site.vercel.app)  
-> 🔗 GitHub Repo: [https://github.com/yourusername/nyt-clone](https://github.com/yourusername/nyt-clone)  
+> 🔗 Hosted Version: [Click here to view live site](https://the-new-york-times-clone.vercel.app/)  
+> 🔗 GitHub Repo: [https://github.com/Utkarsh-Karambhe/The_New_York_Times_Clone](https://github.com/Utkarsh-Karambhe/The_New_York_Times_Clone)  
 > 🧠 Inspired by: The New York Times (https://www.nytimes.com)
 
 ---
