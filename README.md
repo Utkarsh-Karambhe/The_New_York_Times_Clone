@@ -1,4 +1,4 @@
-# 📰 Pixel Plus Hackathon 2025 — NYTimes Clone + Enhancements
+# 📰 Pixel Plus Hackathon 2025 — NYTimes Clone + Enhancements (Utkarsh Karambhe)
 
 ---
 
